@@ -1,6 +1,6 @@
 import type React from "react";
-import { AdminSidebar } from "@/components/admin-sidebar";
-import { Toaster } from "@/components/ui/sonner";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function AdminLayout({
   children,
@@ -9,9 +9,10 @@ export default function AdminLayout({
 }) {
   return (
     <div className="flex h-screen overflow-hidden bg-background">
-      <AdminSidebar />
-      <Toaster />
-      <main className="flex-1 overflow-auto">{children}</main>
+      <SidebarProvider>
+        <AppSidebar />
+        <main className="flex-1 overflow-auto">{children}</main>
+      </SidebarProvider>
     </div>
   );
 }
