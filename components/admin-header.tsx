@@ -3,7 +3,7 @@
 import { Bell, Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SidebarTrigger } from "./ui/sidebar";
+import { SidebarTrigger, useSidebar } from "./ui/sidebar";
 import { ModeToggle } from "./mode-toggle";
 
 interface AdminHeaderProps {
@@ -12,13 +12,17 @@ interface AdminHeaderProps {
 }
 
 export function AdminHeader({ title, description }: AdminHeaderProps) {
+  const { isMobile } = useSidebar();
   return (
-    <header className="flex h-16 items-center justify-between border-b border-border bg-card px-6">
-      <div>
-        <h1 className="text-xl font-semibold text-foreground">{title}</h1>
-        {description && (
-          <p className="text-sm text-muted-foreground">{description}</p>
-        )}
+    <header className="flex h-16 items-center justify-between border-b border-border bg-card px-3 md:px-6">
+      <div className="flex items-center space-x-3">
+        {isMobile && <SidebarTrigger variant={"outline"} size={"icon"} />}
+        <div>
+          <h1 className="text-xl font-semibold text-foreground">{title}</h1>
+          {description && (
+            <p className="text-sm text-muted-foreground">{description}</p>
+          )}
+        </div>
       </div>
 
       <div className="flex items-center gap-4">

@@ -14,7 +14,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -26,13 +25,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./mode-toggle";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { useTheme } from "next-themes";
 
 const navItems = [
   {
@@ -69,15 +61,16 @@ const navItems = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { setTheme } = useTheme();
-  const { open, toggleSidebar } = useSidebar();
+  const { isMobile } = useSidebar();
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader>
-        <SidebarMenuButton asChild size={"md"} className="w-9 self-end">
-          <SidebarTrigger />
-        </SidebarMenuButton>
-      </SidebarHeader>
+      {!isMobile && (
+        <SidebarHeader>
+          <SidebarMenuButton asChild size={"md"} className="w-9 self-end">
+            <SidebarTrigger />
+          </SidebarMenuButton>
+        </SidebarHeader>
+      )}
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>

@@ -1,10 +1,8 @@
 "use client";
 
-import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,12 +11,22 @@ import {
 } from "./ui/dropdown-menu";
 import { VariantProps } from "class-variance-authority";
 import { SidebarMenuButton, sidebarMenuButtonVariants } from "./ui/sidebar";
+import { useEffect, useState } from "react";
 
 export function ModeToggle({
   variant = "outline",
   size = "lgWrap",
 }: VariantProps<typeof sidebarMenuButtonVariants>) {
   const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <DropdownMenu>
