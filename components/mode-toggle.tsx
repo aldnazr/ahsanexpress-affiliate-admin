@@ -11,22 +11,12 @@ import {
 } from "./ui/dropdown-menu";
 import { VariantProps } from "class-variance-authority";
 import { SidebarMenuButton, sidebarMenuButtonVariants } from "./ui/sidebar";
-import { useEffect, useState } from "react";
 
 export function ModeToggle({
   variant = "outline",
   size = "lgWrap",
 }: VariantProps<typeof sidebarMenuButtonVariants>) {
-  const { setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
+  const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
@@ -38,7 +28,8 @@ export function ModeToggle({
           asChild
         >
           <div className="flex w-full pl-3.5 items-center justify-start gap-3 text-muted-foreground">
-            {resolvedTheme === "light" ? <Sun /> : <Moon />}
+            <Sun className="dark:hidden" />
+            <Moon className="hidden dark:block" />
             <span>Tema</span>
           </div>
         </SidebarMenuButton>
