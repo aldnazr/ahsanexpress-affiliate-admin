@@ -18,9 +18,13 @@ export function AdminHeader({ title, description }: AdminHeaderProps) {
       <div className="flex items-center space-x-3">
         {isMobile && <SidebarTrigger variant={"outline"} size={"icon"} />}
         <div>
-          <h1 className="text-xl font-semibold text-foreground">{title}</h1>
+          <h3 className="text-base md:text-xl font-semibold text-foreground">
+            {title}
+          </h3>
           {description && (
-            <p className="text-sm text-muted-foreground">{description}</p>
+            <p className="text-sm text-muted-foreground line-clamp-1 text-ellipsis">
+              {description}
+            </p>
           )}
         </div>
       </div>

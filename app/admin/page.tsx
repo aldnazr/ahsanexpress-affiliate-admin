@@ -58,7 +58,7 @@ export default function AdminDashboard() {
     <div className="flex flex-col">
       <AdminHeader
         title="Dashboard"
-        description="Overview of ahsan express affiliate program performance"
+        description="Overview affiliate program performance"
       />
 
       <div className="p-6 space-y-6">
